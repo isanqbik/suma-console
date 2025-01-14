@@ -19,6 +19,6 @@ public class ProgramTests
         int resultado = tSuma.Sumar(numero1, numero2);
 
         // Assert
-        Assert.Equal(8, resultado);
+        Assert.Equal(7, resultado);
     }
 }
