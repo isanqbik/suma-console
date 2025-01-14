@@ -5,10 +5,26 @@ on:
   push
 
 jobs:
-  my_first_job:
+  build:
     runs-on: ubuntu-latest
-    name: test
-    steps: 
-      - run: echo "suma console"
-      - uses: actions/checkout@v4
-      - run: ls
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --no-restore
+
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
+
+
+
