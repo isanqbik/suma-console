@@ -5,22 +5,22 @@ on:
   push
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.0' # Cambiare la versione secondo necessità
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build solution
+    - name: Build the solution
       run: dotnet build --no-restore
 
     - name: Run tests
